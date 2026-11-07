@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SC Piranha Swim Team | Eastlake, CO</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230b2a47%22/><text x=%2250%22 y=%2258%22 font-family=%22Arial%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%2338b6ff%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22>P</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 全局设置 - 深海蓝主题 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0b2a47; color: #fff; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        /* 顶部导航 */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; background: rgba(11, 42, 71, 0.9); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100; border-bottom: 2px solid #1a4d7a;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-size: 2rem; }
+        .logo-text { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: 2px; }
+        nav a { margin-left: 35px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; color: #8ab8d6; transition: color 0.3s; }
+        nav a:hover { color: #38b6ff; }
+
+        /* 沉浸式首屏 */
+        .hero {
+            background: linear-gradient(rgba(11, 42, 71, 0.6), rgba(11, 42, 71, 0.9)), url('https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&q=80&w=1920') center/cover;
+            color: #fff; text-align: center; padding: 180px 20px 150px;
+            position: relative;
+        }
+        .hero h1 { font-family: 'Oswald', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: 3px; margin-bottom: 20px; line-height: 1.1; }
+        .hero p { font-size: 1.2rem; max-width: 650px; margin: 0 auto 40px; color: #cce4f5; }
+        .hero-btn {
+            background: #38b6ff; color: #0b2a47; padding: 16px 40px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            border-radius: 30px; transition: transform 0.3s, background 0.3s; display: inline-block;
+        }
+        .hero-btn:hover { background: #5cc8ff; transform: translateY(-3px); }
+
+        /* 数据统计区 */
+        .stats-section {
+            background: #1a4d7a; display: flex; justify-content: center; flex-wrap: wrap;
+            padding: 40px 20px; gap: 50px;
+        }
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-family: 'Oswald', sans-serif; font-size: 2.5rem; color: #38b6ff; margin-bottom: 5px; }
+        .stat-item p { font-size: 0.9rem; color: #cce4f5; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* 通用区块 */
+        .section { max-width: 1100px; margin: 100px auto; padding: 0 20px; }
+        .section-title { font-family: 'Oswald', sans-serif; font-size: 2.2rem; text-align: center; color: #fff; margin-bottom: 50px; letter-spacing: 2px; }
+        
+        /* 核心价值卡片 */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card {
+            background: #0f3556; padding: 40px 30px; border-radius: 12px;
+            border-top: 4px solid #38b6ff; text-align: center; transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-8px); background: #134068; }
+        .card span { font-size: 2.5rem; display: block; margin-bottom: 15px; }
+        .card h3 { font-size: 1.2rem; color: #38b6ff; margin-bottom: 12px; }
+        .card p { font-size: 0.95rem; color: #8ab8d6; }
+
+        /* 捐款区 */
+        .donate-section {
+            background: linear-gradient(135deg, #0f3556, #0b2a47); border: 2px solid #1a4d7a;
+            padding: 60px 20px; border-radius: 16px; text-align: center; max-width: 800px; margin: 0 auto 80px;
+        }
+        .donate-section h2 { font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: #38b6ff; margin-bottom: 15px; }
+        .donate-section p { color: #cce4f5; margin-bottom: 30px; font-size: 1.05rem; }
+        .paypal-btn {
+            background-color: #ffc439; color: #003087; font-weight: 700; font-size: 1.1rem;
+            padding: 16px 40px; border-radius: 30px; border: none; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 10px; transition: background 0.3s;
+        }
+        .paypal-btn:hover { background-color: #f0b429; }
+
+        /* 联系与地址 */
+        .contact-section { background: #061a2e; padding: 80px 20px; }
+        .contact-container {
+            max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;
+        }
+        .contact-box { background: #0b2a47; padding: 40px; border-radius: 12px; border: 1px solid #1a4d7a; }
+        .contact-box h3 { font-family: 'Oswald', sans-serif; color: #38b6ff; font-size: 1.5rem; margin-bottom: 20px; }
+        .contact-box p { color: #8ab8d6; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
+        .contact-box a { color: #fff; border-bottom: 1px dashed #38b6ff; padding-bottom: 2px; }
+        .contact-box a:hover { color: #38b6ff; }
+
+        footer { text-align: center; padding: 30px; background: #000; color: #555; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <header>
+        <div class="logo"><span class="logo-icon">🐟</span><span class="logo-text">SC PIRANHA</span></div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#donate">Support Us</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- 首屏 -->
+    <section class="hero">
+        <h1>BUILDING CONFIDENT SWIMMERS</h1>
+        <p>A community-based competitive swim team in Eastlake, Colorado. Developing athletes of all ages through dedication, sportsmanship, and a love for the water.</p>
+        <a href="#contact" class="hero-btn">Join The Team</a>
+    </section>
+
+    <!-- 数据区 -->
+    <section class="stats-section">
+        <div class="stat-item"><h3>50+</h3><p>Active Swimmers</p></div>
+        <div class="stat-item"><h3>12</h3><p>Weekly Practices</p></div>
+        <div class="stat-item"><h3>100%</h3><p>Volunteer Coached</p></div>
+    </section>
+
+    <!-- 核心价值 -->
+    <section class="section" id="about">
+        <h2 class="section-title">WHY WE SWIM</h2>
+        <div class="grid-3">
+            <div class="card">
+                <span>🏊</span>
+                <h3>Skill Development</h3>
+                <p>From beginners to advanced competitors, we provide age-appropriate training that builds technique and endurance.</p>
+            </div>
+            <div class="card">
+                <span>🤝</span>
+                <h3>Team Spirit</h3>
+                <p>We foster a positive, inclusive environment where every swimmer feels supported by their peers and coaches.</p>
+            </div>
+            <div class="card">
+                <span>🌱</span>
+                <h3>Life Lessons</h3>
+                <p>Swimming teaches discipline, resilience, and the value of hard work — skills that last a lifetime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 捐款区 -->
+    <section class="donate-section" id="donate">
+        <h2>SUPPORT OUR SWIMMERS</h2>
+        <p>Your donation helps cover pool fees, equipment, and travel expenses for our young athletes. Every dollar makes a splash.</p>
+        <!-- 请将 YOUR_PAYPAL_EMAIL_HERE 替换为你真正的 PayPal 商业邮箱 -->
+        <a href="https://www.paypal.com/donate/?business=YOUR_PAYPAL_EMAIL_HERE&no_recurring=0&item_name=SC+Piranha+Swim+Team&currency_code=USD" target="_blank" class="paypal-btn">
+            <span>💳</span> Donate with PayPal
+        </a>
+    </section>
+
+    <!-- 联系信息与地址 -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <!-- 联系/加入我们 -->
+            <div class="contact-box">
+                <h3>JOIN THE TEAM</h3>
+                <p>Ready to dive in? Contact our coaching staff to schedule a tryout or learn more about our programs.</p>
+                <p style="margin-top: 20px;">✉️ <a href="mailto:info@scpiranhaswim.org">info@scpiranhaswim.org</a></p>
+                <p>📞 (555) 123-4567</p>
+            </div>
+            
+            <!-- 训练地址 -->
+            <div class="contact-box">
+                <h3>PRACTICE LOCATION</h3>
+                <p>📍 Eastlake Community Pool</p>
+                <p>1234 Lakeview Dr,<br>Eastlake, CO 80614</p>
+                <p style="margin-top: 20px; font-size: 0.85rem; color: #5a7a90;">* Mailing Address: PO Box 789, Eastlake, CO</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2024 SC Piranha Swim Team. A 501(c)(3) Nonprofit Organization.</p>
+    </footer>
+</body>
+</html>
